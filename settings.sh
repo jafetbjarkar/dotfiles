@@ -51,11 +51,6 @@ defaults write NSGlobalDomain AppleActionOnDoubleClick -string "Maximize"
 # Dark interface, Mojave
 defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
 
-# Set alert volume to 0
-defaults write NSGlobalDomain com.apple.sound.beep.volume -float 0.0
-# Flash screen on system beep
-defaults write NSGlobalDomain com.apple.sound.beep.flash -int 1
-
 # Desktop Finder view options
 plutil -replace DesktopViewSettings.IconViewSettings.arrangeBy -string grid ~/Library/Preferences/com.apple.finder.plist
 plutil -replace DesktopViewSettings.IconViewSettings.iconSize -string 48 ~/Library/Preferences/com.apple.finder.plist
@@ -87,13 +82,11 @@ defaults write com.apple.dashboard db-enabled-state -int 1;
 # 10: Put display to sleep
 # 11: Launchpad
 # 12: Notification Center
-# Top left screen corner → Mission Control
-defaults write com.apple.dock wvous-tl-corner -int 10;
-defaults write com.apple.dock wvous-tl-modifier -int 0;
-defaults write com.apple.dock wvous-tr-corner -int 4;
-defaults write com.apple.dock wvous-tr-modifier -int 0;
-defaults write com.apple.dock wvous-bl-corner -int 2;
+# tl = top-left, br = bottom-right etc.
+defaults write com.apple.dock wvous-bl-corner -int 11;
 defaults write com.apple.dock wvous-bl-modifier -int 0;
+defaults write com.apple.dock wvous-br-corner -int 4;
+defaults write com.apple.dock wvous-br-modifier -int 0;
 
 # Enable full keyboard access for all controls
 # (e.g. enable Tab in modal dialogs)
