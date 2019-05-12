@@ -31,9 +31,9 @@ xcode-select --install
 ## Configure Git
 
 ```bash
-git config --global user.name "Birkir Brynjarsson"  
+git config --global user.name "Jafet Bjarkar"  
 git config --global user.email "*******@gmail.com"  
-git config --global github.user birkirbrynjarsson
+git config --global github.user jafetbjarkar
 git config --global core.excludesfile ~/.gitignore
 echo .DS_Store >> ~/.gitignore
 ```
