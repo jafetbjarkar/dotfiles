@@ -50,7 +50,7 @@ Clone the repository and hide it in Finder with `chflags`
 
 ```bash
 cd ~
-git clone https://github.com/birkirbrynjarsson/dotfiles
+git clone https://github.com/jafetbjarkar/dotfiles
 chflags hidden dotfiles
 cd ~/dotfiles
 ```
