@@ -1,7 +1,5 @@
-tap "microsoft/mssql-release"
-brew "msodbcsql"
-brew "mssql-tools"
 cask "discord"
 cask "java"
 cask "steam"
-brew "gradle"
+
+cask "microsoft-remote-desktop-beta"

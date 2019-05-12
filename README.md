@@ -188,20 +188,13 @@ xargs -L1 npm i -g < ~/dotfiles/npmfile
 ```
 
 
-## Python
-
-```bash
-pip3 install pyinstaller
-```
-
-
 ## Visual Studio Code settings
 I sync plugins and settings to Visual Studio Code with the [*Settings sync*](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync) plugin. It requires a GitHub API Token with gist access. Check out the [configuration instructions](https://shanalikhan.github.io/2016/07/31/Visual-Studio-code-sync-setting-edit-manually.html)
 
 My currently configured plugins can be found with:
 
 ```bash
-curl -s https://api.github.com/gists/8b47741d950a86e46222eb8bfc293a9a \
+curl -s https://api.github.com/gists/8dba65e2d29f4df7df5210168a77b961 \
 | jq '.files."extensions.json".raw_url' \
 | tr -d \" \
 | xargs curl -s \
@@ -222,16 +215,6 @@ ln -s ~/Desktop ~/Dropbox/
 
 I keep some config files, shell aliases and application preferences in a [private branch](https://24ways.org/2013/keeping-parts-of-your-codebase-private-on-github/) of this repository and copy them into their designated destination after installing the apps. 
 These files might contain Software Licenses or other private data.
-
-### Spotify CLI
-
-The `spotify` cli requires configuration.
-Add CLIENT_ID and CLIENT_SECRET to `~/.shpotify.cfg`, get this information by [creating an 'application'](https://developer.spotify.com/my-applications/#!/applications/create).
-
-```bash
-echo 'CLIENT_ID="urCl13nt1D"' > ~/.shpotify.cfg
-echo 'CLIENT_SECRET="urCl13nt53cret"' >> ~/.shpotify.cfg
-```
 
 ## Post installation cleanup
 
