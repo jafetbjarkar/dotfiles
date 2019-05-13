@@ -15,6 +15,7 @@ defaults write com.apple.dock static-only -bool true
 defaults write com.apple.Dock showhidden -bool yes
 defaults write com.apple.dock mru-spaces -bool false
 defaults write com.apple.dock "show-recents" -int 0
+defaults write com.apple.dock mineffect -string scale
 killall Dock
 
 defaults write com.apple.finder ShowPathbar -bool true
