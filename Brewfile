@@ -31,6 +31,7 @@ cask "transmit"
 cask "visual-studio-code"
 cask "vlc"
 
+brew "bower"
 cask "atom"
 cask "bettertouchtool"
 cask "coda"
