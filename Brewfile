@@ -34,13 +34,11 @@ cask "vlc"
 cask "atom"
 cask "bettertouchtool"
 cask "coda"
-cask "craftmanager"
 cask "github"
 cask "google-backup-and-sync"
 cask "invisionsync"
 cask "sketch-toolbox"
 cask "sketch"
-cask "virtualbox"
 mas "Wunderlist", id: 410628904
 
 # brew "ack"
