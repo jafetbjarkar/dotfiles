@@ -73,21 +73,6 @@ brew bundle
 brew bundle --file=Brewfile2
 ```
 
-## SSH keys
-
-With **1password** installed I get my **SSH-keys** from saved documents and move to `~/.ssh` and make sure permissions are correct
-
-```bash
-chmod 600 ~/.ssh/id_rsa
-chmod 600 ~/.ssh/id_rsa.pub
-chmod 700 ~/.ssh
-```
-
-If the public **SSH-key** has been added to [GitHub](https://github.com/settings/ssh), the connection can be tested
-
-```bash
-ssh -T git@github.com
-```
 
 ## MacOS system preferences
 
@@ -191,15 +176,6 @@ xargs -L1 npm i -g < ~/dotfiles/npmfile
 ## Visual Studio Code settings
 I sync plugins and settings to Visual Studio Code with the [*Settings sync*](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync) plugin. It requires a GitHub API Token with gist access. Check out the [configuration instructions](https://shanalikhan.github.io/2016/07/31/Visual-Studio-code-sync-setting-edit-manually.html)
 
-My currently configured plugins can be found with:
-
-```bash
-curl -s https://api.github.com/gists/8dba65e2d29f4df7df5210168a77b961 \
-| jq '.files."extensions.json".raw_url' \
-| tr -d \" \
-| xargs curl -s \
-| grep name
-```
 
 
 ## Dropbox Desktop sync
