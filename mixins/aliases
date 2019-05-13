@@ -81,10 +81,17 @@ dict() {
     grep "$@" /usr/share/dict/words
 }
 
+###############
+# DEVELOPMENT #
+###############
 
-###################
-# AGR DEVELOPMENT #
-###################
+alias npmlist='npm list -g --depth=0'
+alias npmlist1='npm list -g --depth=1'
+
+
+#######
+# AGR #
+#######
 
 # AGR 5
 export agr5dir=~/Sites/agr5/agr5-client
