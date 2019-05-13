@@ -83,7 +83,7 @@ defaults write com.apple.dashboard db-enabled-state -int 1;
 # 11: Launchpad
 # 12: Notification Center
 # tl = top-left, br = bottom-right etc.
-defaults write com.apple.dock wvous-bl-corner -int 11;
+defaults write com.apple.dock wvous-bl-corner -int 2;
 defaults write com.apple.dock wvous-bl-modifier -int 0;
 defaults write com.apple.dock wvous-br-corner -int 4;
 defaults write com.apple.dock wvous-br-modifier -int 0;
