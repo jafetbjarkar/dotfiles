@@ -88,6 +88,15 @@ defaults write com.apple.dock wvous-bl-modifier -int 0;
 defaults write com.apple.dock wvous-br-corner -int 4;
 defaults write com.apple.dock wvous-br-modifier -int 0;
 
+# Mouse - Secondary click & tap to zoom
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
+# Mouse - Tap to zoom
+defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
 # Enable full keyboard access for all controls
 # (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
