@@ -19,13 +19,12 @@ alias path='echo -e ${PATH//:/\\n}'
 
 alias f='open -a Finder ./' # Also aliased to 'ofd' from osx plugin
 
+alias show='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder'
+alias hide='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder'
+
 alias dotfiles='cd $HOME/dotfiles/'
 alias dropbox='cd $HOME/Dropbox/'
 alias sites='cd $HOME/Sites/'
-
-# Hide/show all desktop icons (useful when presenting)
-alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
 trash () { command mv "$@" ~/.Trash ; }    # trash:        Moves a file to the MacOS trash
 ql () { qlmanage -p "$*" >& /dev/null; }   # ql:           Opens any file in MacOS Quicklook Preview
@@ -46,6 +45,7 @@ alias ping='ping -c 5'      # Pings with 5 packets, not unlimited
 # VARIOUS #
 ###########
 
+alias finder='open -a "Finder"'
 alias at='open -a "Atom"'
 
 # Get week number
@@ -81,13 +81,21 @@ dict() {
     grep "$@" /usr/share/dict/words
 }
 
+##################
+# iTerm Profiles #
+##################
+
+alias default='echo -e "\033]50;SetProfile=Default\x7"'
+alias green='echo -e "\033]50;SetProfile=Green\x7"'
+alias blue='echo -e "\033]50;SetProfile=Blue\x7"'
+
+
 ###############
 # DEVELOPMENT #
 ###############
 
 alias npmlist='npm list -g --depth=0'
 alias npmlist1='npm list -g --depth=1'
-
 
 #######
 # AGR #
@@ -96,38 +104,42 @@ alias npmlist1='npm list -g --depth=1'
 # AGR 5
 export agr5dir=~/Sites/agr5/agr5-client
 export agr5root=~/Sites/agr5
-alias 5='cd $agr5root;'
-alias agr5='cd $agr5root;'
-alias clean5='cd $agr5root && rm temp/serve.pid -f'
-alias serve5='cd $agr5root; npm run me -- serve'
-alias test5='cd $agr5root; gulp coverage:auto'
-alias e2e5='cd $agr5root; npm run me -- e2e-run -v'
+alias 5='cd $agr5root && nvm use 8 && green'
+alias agr5='cd $agr5root && nvm use 8 && green'
+alias clean5='agr5 && && rm temp/serve.pid -f'
+alias serve5='agr5 && npm run me -- serve'
+alias test5='agr5 && gulp coverage:auto'
+alias e2e5='agr5 && npm run me -- e2e-run -v'
 
 # Backend
-alias me='cd $agr5root; npm run me -- '
-alias build='cd $agr5root; me bd-dev-nav2009 && run-forecast && backup-db'
-alias build-bm='cd $agr5root; me bd-dev-bm && run-forecast && backup-db'
-alias build-forecast='cd $agr5root; npm run me -- deploy-forecast-svc'
-alias build-api='cd $agr5root; me build-web-api'
-alias debug-api='cd $agr5root; me dev-debug-api'
-alias install-db='cd $agr5root; me build-dev-sql-nav2009'
-alias restore-db='cd $agr5root; me dev-restore-prod-db'
-alias run-forecast='cd $agr5root; me db-run-forecasts'
-alias stop-forecast='cd $agr5root; me undeploy-forecast-svc'
-alias start-forecast='cd $agr5root: me deploy-forecast-svc'
-alias backup-db='cd $agr5root; me dev-backup-prod-db'
-alias clean-all='cd $agr5root; me cleanbuild-dotnet && me cleanbuild-sql && me cleanbuild-web-client'
-alias log='cd $agr5root; cd log; open -t `ls -1t | head -1`' # open the most recently modified log file
+alias me='agr5 && npm run me -- '
+alias build='agr5 && me bd-dev-nav2009 && run-forecast && backup-db'
+alias build-bm='agr5 && me bd-dev-bm && run-forecast && backup-db'
+alias build-forecast='agr5 && npm run me -- deploy-forecast-svc'
+alias build-api='agr5 && me build-web-api'
+alias debug-api='agr5 && me dev-debug-api'
+alias install-db='agr5 && me build-dev-sql-nav2009'
+alias restore-db='agr5 && me dev-restore-prod-db'
+alias run-forecast='agr5 && me db-run-forecasts'
+alias stop-forecast='agr5 && me undeploy-forecast-svc'
+alias start-forecast='agr5 && me deploy-forecast-svc'
+alias backup-db='agr5 && me dev-backup-prod-db'
+alias clean-all='agr5 && me cleanbuild-dotnet && me cleanbuild-sql && me cleanbuild-web-client'
+alias log='agr5 && cd log; open -t `ls -1t | head -1`' # open the most recently modified log file
 
 # AGR 6
 export agr6root=~/Sites/agr6
-alias 6='cd $agr6root'
-alias agr6='cd $agr6root'
-alias serve='cd $agr6root; ng serve'
-alias test='cd $agr6root; npm run test'
-alias lint='cd $agr6root; ng lint'
-alias buildprod='cd $agr6root; ng build --prod'
+alias 6='cd $agr6root && nvm use 10 && default'
+alias agr6='cd $agr6root && nvm use 10 && default'
+alias serve='agr6 && ng serve'
+alias test='agr6 && npm run test'
+alias lint='agr6 && ng lint'
+alias buildprod='agr6 && ng build --prod'
 
-alias e2e='cd $agr6root; ng e2e --configuration=no-serve'
+alias e2e='agr6 && ng e2e --configuration=no-serve'
 alias e2e+='e2e && me restore-db'
 alias e2ec='stop-forecast && restore-db && start-forecast'
+
+# Documentation
+export docroot=~/Sites/agr-documentation
+alias doc='cd $docroot && blue'
