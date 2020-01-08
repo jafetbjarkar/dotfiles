@@ -86,8 +86,10 @@ dict() {
 ##################
 
 alias default='echo -e "\033]50;SetProfile=Default\x7"'
+alias monokai='echo -e "\033]50;SetProfile=Monokai\x7"'
 alias green='echo -e "\033]50;SetProfile=Green\x7"'
 alias blue='echo -e "\033]50;SetProfile=Blue\x7"'
+alias red='echo -e "\033]50;SetProfile=Red\x7"'
 
 
 ###############
@@ -101,45 +103,49 @@ alias npmlist1='npm list -g --depth=1'
 # AGR #
 #######
 
-# AGR 5
-export agr5dir=~/Sites/agr5/agr5-client
-export agr5root=~/Sites/agr5
-alias 5='cd $agr5root && nvm use 8 && green'
-alias agr5='cd $agr5root && nvm use 8 && green'
-alias clean5='agr5 && && rm temp/serve.pid -f'
-alias serve5='agr5 && npm run me -- serve'
-alias test5='agr5 && gulp coverage:auto'
-alias e2e5='agr5 && npm run me -- e2e-run -v'
+alias agrvpn='echo "password" | sudo openconnect https://vpn.agrdynamics.com --background --user=username --passwd-on-stdin'
+alias vpnstop='sudo killall -SIGINT openconnect'
+
+# AGR
+export agrroot=~/Sites/agr
+export agrngroot=~/Sites/agr/agr-client
+alias agr='cd $agrroot && nvm use 10 && monokai';
+alias agrng='cd $agrngroot && nvm use 10 && red';
+
+alias serve='agrng && ng serve'
+alias servebm='agrng && ng serve --proxy-config proxy-bm-jafet.conf.json'
+alias test='agrng && npm run test'
+alias lint='agrng && ng lint'
+alias buildprod='agrng && ng build --prod'
+alias e2e='agrng && ng e2e --configuration=no-serve'
+alias e2e+='agrng && e2e && agr && me restore-db && agrng'
 
 # Backend
-alias me='agr5 && npm run me -- '
-alias build='agr5 && me bd-dev-nav2009 && run-forecast && backup-db'
-alias build-bm='agr5 && me bd-dev-bm && run-forecast && backup-db'
-alias build-forecast='agr5 && npm run me -- deploy-forecast-svc'
-alias build-api='agr5 && me build-web-api'
-alias debug-api='agr5 && me dev-debug-api'
-alias install-db='agr5 && me build-dev-sql-nav2009'
-alias restore-db='agr5 && me dev-restore-prod-db'
-alias run-forecast='agr5 && me db-run-forecasts'
-alias stop-forecast='agr5 && me undeploy-forecast-svc'
-alias start-forecast='agr5 && me deploy-forecast-svc'
-alias backup-db='agr5 && me dev-backup-prod-db'
-alias clean-all='agr5 && me cleanbuild-dotnet && me cleanbuild-sql && me cleanbuild-web-client'
-alias log='agr5 && cd log; open -t `ls -1t | head -1`' # open the most recently modified log file
+alias me='agr && npm run me -- '
+alias build='agr && me bd-dev-nav2009 && run-forecast && backup-db'
+alias build-bm='agr && me bd-dev-bm && run-forecast && backup-db'
+alias build-forecast='agr && npm run me -- deploy-forecast-svc'
+alias build-api='agr && me build-web-api'
+alias debug-api='agr && me dev-debug-api'
+alias install-db='agr && me build-dev-sql-nav2009'
+alias restore-db='agr && me dev-restore-prod-db'
+alias backup-db='agr && me dev-backup-prod-db'
+alias export-db='agr && me dev-export-prod-db'
+alias import-db='agr && me dev-import-prod-db'
+alias run-forecast='agr && me db-run-forecasts'
+alias stop-forecast='agr && me undeploy-forecast-svc'
+alias start-forecast='agr && me deploy-forecast-svc'
+alias clean-all='agr && me cleanbuild-dotnet && me cleanbuild-sql && me cleanbuild-web-client'
+alias log='agr && cd log; open -t `ls -1t | head -1`' # open the most recently modified log file
 
-# AGR 6
-export agr6root=~/Sites/agr6
-alias 6='cd $agr6root && nvm use 10 && default'
-alias agr6='cd $agr6root && nvm use 10 && default'
-alias serve='agr6 && ng serve'
-alias test='agr6 && npm run test'
-alias lint='agr6 && ng lint'
-alias buildprod='agr6 && ng build --prod'
-
-alias e2e='agr6 && ng e2e --configuration=no-serve'
-alias e2e+='e2e && me restore-db'
-alias e2ec='stop-forecast && restore-db && start-forecast'
+# Migration
+export migrationroot=~/Sites/agr/scripts/migration;
+alias migration='cd $migrationroot && default';
 
 # Documentation
 export docroot=~/Sites/agr-documentation
 alias doc='cd $docroot && blue'
+alias doca='cd $docroot/assortment && blue'
+alias doci='cd $docroot/inventory && blue'
+alias docp='cd $docroot/planning && blue'
+alias doct='cd $docroot/technical && blue'
