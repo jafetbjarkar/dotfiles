@@ -4,6 +4,7 @@
 # TERMINAL #
 ############
 alias aliases='code ~/dotfiles/mixins/aliases'
+alias aliasesprivate='code ~/dotfiles/mixins/private'
 alias zshreload='source ~/.zshrc'
 
 alias lc='colorls --gs --sd -lA'
@@ -45,8 +46,11 @@ alias ping='ping -c 5'      # Pings with 5 packets, not unlimited
 # VARIOUS #
 ###########
 
+alias restart='sudo shutdown -r now'
 alias finder='open -a "Finder"'
 alias at='open -a "Atom"'
+alias n='code ~/notes.md'
+alias notes='code ~/notes.md'
 
 # Get week number
 alias week='date +%V'
@@ -109,21 +113,23 @@ alias vpnstop='sudo killall -SIGINT openconnect'
 # AGR
 export agrroot=~/Sites/agr
 export agrngroot=~/Sites/agr/agr-client
-alias agr='cd $agrroot && nvm use 10 && monokai';
-alias agrng='cd $agrngroot && nvm use 10 && red';
+alias agr='cd $agrroot && nvm use 12 && monokai';
+alias agrng='cd $agrngroot && nvm use 12 && red';
 
-alias serve='agrng && ng serve'
-alias servebm='agrng && ng serve --proxy-config proxy-bm-jafet.conf.json'
+alias serve='agrng && ng serve --proxy-config jafet/proxy.conf.vagrant.json'
+alias servebm='agrng && ng serve --proxy-config jafet/proxy.conf.yoshi-bm.json'
 alias test='agrng && npm run test'
 alias lint='agrng && ng lint'
 alias buildprod='agrng && ng build --prod'
+alias build-prod='agrng && ng build --prod'
 alias e2e='agrng && ng e2e --configuration=no-serve'
 alias e2e+='agrng && e2e && agr && me restore-db && agrng'
 
 # Backend
 alias me='agr && npm run me -- '
-alias build='agr && me bd-dev-nav2009 && run-forecast && backup-db'
 alias build-bm='agr && me bd-dev-bm && run-forecast && backup-db'
+alias build-financial-planning='agr && me bd-dev-financial_planning && run-forecast && backup-db'
+alias build-inventory='agr && me bd-dev-inventory && run-forecast && backup-db'
 alias build-forecast='agr && npm run me -- deploy-forecast-svc'
 alias build-api='agr && me build-web-api'
 alias debug-api='agr && me dev-debug-api'
@@ -149,3 +155,9 @@ alias doca='cd $docroot/assortment && blue'
 alias doci='cd $docroot/inventory && blue'
 alias docp='cd $docroot/planning && blue'
 alias doct='cd $docroot/technical && blue'
+
+# Migration
+export migrationroot=~/Sites/agr-installer/migration
+alias migration='cd $migrationroot && monokai'
+alias migratestart='nvm use 12 && cd $migrationroot && npm run start'
+alias migraterevert='nvm use 12 && cd $migrationroot && npm run revert'
