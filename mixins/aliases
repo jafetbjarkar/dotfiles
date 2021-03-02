@@ -52,6 +52,11 @@ alias at='open -a "Atom"'
 alias n='code ~/notes.md'
 alias notes='code ~/notes.md'
 
+# Git
+alias gitrulist='git branch -r | awk "{print \$1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}"'
+alias gitru='git branch -r | awk "{print \$1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}" | xargs git branch -d'
+alias gitruf='git branch -r | awk "{print \$1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}" | xargs git branch -D'
+
 # Get week number
 alias week='date +%V'
 
@@ -94,6 +99,8 @@ alias monokai='echo -e "\033]50;SetProfile=Monokai\x7"'
 alias green='echo -e "\033]50;SetProfile=Green\x7"'
 alias blue='echo -e "\033]50;SetProfile=Blue\x7"'
 alias red='echo -e "\033]50;SetProfile=Red\x7"'
+alias orange='echo -e "\033]50;SetProfile=Orange\x7"'
+alias yellow='echo -e "\033]50;SetProfile=Yellow\x7"'
 
 
 ###############
@@ -107,29 +114,34 @@ alias npmlist1='npm list -g --depth=1'
 # AGR #
 #######
 
-alias agrvpn='echo "password" | sudo openconnect https://vpn.agrdynamics.com --background --user=username --passwd-on-stdin'
+# See agrvpn in dotfiles/private
+# alias agrvpn='echo "password" | sudo openconnect https://vpn.agrdynamics.com --background --user=username --passwd-on-stdin'
 alias vpnstop='sudo killall -SIGINT openconnect'
-
+# GROUP: [AGR-test-Azure|AGRUsers]:
 # AGR
 export agrroot=~/Sites/agr
 export agrngroot=~/Sites/agr/agr-client
-alias agr='cd $agrroot && nvm use 12 && monokai';
+alias agr='cd $agrroot && nvm use 12 && default';
 alias agrng='cd $agrngroot && nvm use 12 && red';
+alias api='nvm use 12 && cd ~/Sites/agr/agr-services && orange';
 
 alias serve='agrng && ng serve --proxy-config jafet/proxy.conf.vagrant.json'
-alias servebm='agrng && ng serve --proxy-config jafet/proxy.conf.yoshi-bm.json'
+alias servedev='agrng && ng serve --proxy-config jafet/proxy.conf.r60.daily.local.json'
+alias serve60='agrng && ng serve --proxy-config jafet/proxy.conf.r60.daily.local.json'
+alias serve61='agrng && ng serve --proxy-config jafet/proxy.conf.r61.daily.local.json'
+alias serve62='agrng && ng serve --proxy-config jafet/proxy.conf.develop.daily.local.json'
 alias test='agrng && npm run test'
 alias lint='agrng && ng lint'
-alias buildprod='agrng && ng build --prod'
-alias build-prod='agrng && ng build --prod'
+alias build='agrng && ng build --prod'
 alias e2e='agrng && ng e2e --configuration=no-serve'
 alias e2e+='agrng && e2e && agr && me restore-db && agrng'
 
 # Backend
 alias me='agr && npm run me -- '
-alias build-bm='agr && me bd-dev-bm && run-forecast && backup-db'
-alias build-financial-planning='agr && me bd-dev-financial_planning && run-forecast && backup-db'
-alias build-inventory='agr && me bd-dev-inventory && run-forecast && backup-db'
+alias build-bm='agr && me bd-dev-bm && backup-db'
+alias build-financial-planning='agr && me bd-dev-financial_planning && backup-db'
+alias build-nav='agr && me bd-dev-nav2009 && backup-db'
+alias build-inventory='agr && me bd-dev-inventory && backup-db'
 alias build-forecast='agr && npm run me -- deploy-forecast-svc'
 alias build-api='agr && me build-web-api'
 alias debug-api='agr && me dev-debug-api'
@@ -141,12 +153,12 @@ alias import-db='agr && me dev-import-prod-db'
 alias run-forecast='agr && me db-run-forecasts'
 alias stop-forecast='agr && me undeploy-forecast-svc'
 alias start-forecast='agr && me deploy-forecast-svc'
-alias clean-all='agr && me cleanbuild-dotnet && me cleanbuild-sql && me cleanbuild-web-client'
+alias clean-all='agr && me cleanbuild-dotnet && me cleanbuild-sql && me cleanbuild-web-d'
 alias log='agr && cd log; open -t `ls -1t | head -1`' # open the most recently modified log file
 
 # Migration
 export migrationroot=~/Sites/agr/scripts/migration;
-alias migration='cd $migrationroot && default';
+alias migration='cd $migrationroot && yellow';
 
 # Documentation
 export docroot=~/Sites/agr-documentation
